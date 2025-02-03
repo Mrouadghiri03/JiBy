@@ -23,6 +23,20 @@ class SecurityController extends AbstractController
             'error' => $error,
         ]);
     }
+    #[Route(path: '/ok', name: 'app_ok')]
+    public function ok(): Response
+    {
+        $user = $this->getUser(); // Récupère l'utilisateur connecté
+    
+    if (!$user) {
+        return $this->redirectToRoute('app_login'); // Redirige si aucun utilisateur connecté
+    }
+
+    return $this->render('ok.html.twig', [
+        'username' => $user->getUserIdentifier(), // Envoie le username au template
+    ]);
+    }
+
 
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void

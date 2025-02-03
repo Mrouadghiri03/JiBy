@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welkome To JiBy{% endblock %}
+
+
+
+{% block stylesheets %}
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .container:hover {
+        transform: scale(1.02);
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 12px 24px;
+        margin: 10px;
+        font-size: 1.2rem;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 30px;
+        transition: background 0.3s ease-in-out, transform 0.2s;
+    }
+
+    .btn-login {
+        background: #ff7eb3;
+        box-shadow: 0 4px 15px rgba(255, 126, 179, 0.5);
+    }
+
+    .btn-register {
+        background: #f2994a;
+        box-shadow: 0 4px 15px rgba(242, 153, 74, 0.5);
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        opacity: 0.9;
+    }
+
+    .fade-in {
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container fade-in">
+    <h1>Welkome to JiBy</h1>
+    <p>Log in or sign up to manage your income and expenses</p>
+    <a href="{{ path('app_login') }}" class="btn btn-login">login</a>
+    <a href="{{ path('app_register') }}" class="btn btn-register">Register</a>
+</div>
+{% endblock %}
