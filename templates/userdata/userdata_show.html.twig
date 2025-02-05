@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil Informations{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .profile-card {
+        width: 50%;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+    }
+
+    .profile-info {
+        text-align: left;
+        margin-top: 20px;
+    }
+
+    .profile-info p {
+        font-size: 1.2rem;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .profile-info strong {
+        color: #ff758c;
+    }
+
+    .btn-edit {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 20px;
+        background: #ff758c;
+        border-radius: 30px;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 10px rgba(255, 117, 140, 0.5);
+    }
+
+    .btn-edit:hover {
+        background: #ff5a6e;
+        transform: translateY(-3px);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="profile-card">
+    <h1>📄 Profil Informations</h1>
+
+    <div class="profile-info">
+        <p><strong>ID:</strong> {{ user.id }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>First Name:</strong> {{ user.userdata.firstname }}</p>
+        <p><strong>Last Name:</strong> {{ user.userdata.lastname }}</p>
+        <p><strong>Age:</strong> {{ user.userdata.age }}</p>
+        <p><strong>Phone:</strong> {{ user.userdata.phone }}</p>
+        <p><strong>Address:</strong> {{ user.userdata.adress }}</p>
+    </div>
+
+    <a href="{{ path('app_userdata_edit', { id: user.userdata.id }) }}" class="btn-edit">✏️ Edit</a>
+</div>
+{% endblock %}

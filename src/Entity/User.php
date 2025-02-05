@@ -36,6 +36,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?UserData $userdata = null;
+
+   
+   
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,4 +130,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function getUserdata(): ?UserData
+    {
+        return $this->userdata;
+    }
+
+    public function setUserdata(?UserData $userdata): static
+    {
+        $this->userdata = $userdata;
+
+        return $this;
+    }
+
+    
+
+   
+
+   
 }

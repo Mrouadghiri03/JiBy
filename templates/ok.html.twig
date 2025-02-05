@@ -1,18 +1,132 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bienvenue{% endblock %}
+{% block title %}Accueil{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(10px);
+        border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .navbar h1 {
+        color: white;
+        margin: 0;
+    }
+
+    .navbar .logout-btn {
+        background: #ff3f4e;
+        padding: 10px 20px;
+        border-radius: 30px;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .navbar .logout-btn:hover {
+        background: #d62f40;
+    }
+
+    .container {
+        text-align: center;
+        padding: 50px 20px;
+    }
+
+    h1 {
+        color: #fff;
+        font-size: 3rem;
+        margin-bottom: 20px;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+    }
+
+    .btn-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+        background: #ff758c;
+    }
+
+    .btn-primary:hover {
+        background: #ff5a6e;
+        transform: translateY(-3px);
+    }
+
+    .btn-danger {
+        background: #ff3f4e;
+    }
+
+    .btn-danger:hover {
+        background: #d62f40;
+        transform: translateY(-3px);
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+{% endblock %}
 
 {% block body %}
-    {% include '_partials/_navbar.html.twig' %}
-    
-    <div class="container text-center mt-5">
-        <div class="alert alert-success mb-4">
-            <h1 class="display-4">Bonjour, {{ username }}!</h1>
-            <p>Vous êtes connecté avec succès. Vous pouvez maintenant accéder à votre profil ou vous déconnecter.</p>
-        </div>
-        
-        <a href="{{ path('app_ok') }}" class="btn btn-lg btn-primary mb-3">Voir Profil</a>
-        <a href="{{ path('app_logout') }}" class="btn btn-lg btn-danger">Déconnexion</a>
-    </div>
+<!-- Barre de navigation -->
+<div class="navbar">
+    <h1>Hello  {{ user.userdata.lastname }} {{user.userdata.firstname}}!</h1>
+    <a href="{{ path('app_logout') }}" class="logout-btn">Logout</a>
+</div>
 
+<!-- Contenu principal -->
+<div class="container">
+    <h1>Manage your finances easily</h1>
+    <p>Add your income, track your expenses and download your financial statement in one click.</p>
+
+    <div class="btn-container">
+        <a href="{{ path('app_ok') }}" class="btn btn-primary">🏠 Home</a>
+        <a href="#" class="btn btn-danger">💰 Transactions</a>
+        <a href="#" class="btn btn-primary">➕ Add Income</a>
+        <a href="#" class="btn btn-primary">➖ Add Spending</a>
+        <a href="#" class="btn btn-primary">📄 Download financial statement</a>
+        <a href="{{ path('app_userdata_show') }}" class="btn btn-danger">👤 Profil</a>
+    </div>
+</div>
 {% endblock %}
