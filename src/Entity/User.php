@@ -38,7 +38,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
-    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(inversedBy: 'user',targetEntity: UserData::class, cascade: ['persist', 'remove'])]
     private ?UserData $userdata = null;
 
     /**
@@ -83,7 +83,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return (string) $this->email;
     }
-
+   
     /**
      * @see UserInterface
      *

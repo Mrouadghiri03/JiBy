@@ -11,6 +11,7 @@ final class ChoiceLogInRegisterController extends AbstractController
     #[Route('', name: 'app_choice_log_in_register')]
     public function index(): Response
     {
+        
         return $this->render('choice_log_in_register/index.html.twig', [
             'controller_name' => 'ChoiceLogInRegisterController',
         ]);

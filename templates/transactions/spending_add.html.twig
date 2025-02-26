@@ -1,0 +1,166 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add Income{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        font-family: 'Poppins', sans-serif;
+        color: white;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        width: 50%;
+        margin: auto;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="number"], input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        margin-top: 5px;
+        background: rgba(255, 255, 255, 0.9);
+        color: black;
+    }
+
+    .radio-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .radio-group label {
+        background: rgba(255, 255, 255, 0.3);
+        padding: 8px 12px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .radio-group input[type="radio"] {
+        display: none;
+    }
+
+    .radio-group input[type="radio"]:checked + label {
+        background: #ff758c;
+        color: white;
+    }
+
+    .btn-submit {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 20px;
+        background: #ff758c;
+        border-radius: 30px;
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn-submit:hover {
+        background: #ff5a6e;
+        transform: translateY(-3px);
+    }
+
+    .alert {
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .alert-success {
+        background: #28a745;
+        color: white;
+    }
+
+    .alert-error {
+        background: #dc3545;
+        color: white;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>➖ Add Spending</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-error">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <form action="{{ path('app_transaction_add_spending') }}" method="POST">
+        <div class="form-group">
+            <label>Category of spending:</label>
+            <div class="radio-group">
+                <input type="radio" id="accommodation" name="source" value="Accommodation" required>
+                <label for="accommodation">Accommodation</label>
+
+                <input type="radio" id="food" name="source" value="Food">
+                <label for="food">Food</label>
+
+                <input type="radio" id="transportation" name="source" value="Transportation">
+                <label for="transportation">Transportation</label>
+
+                <input type="radio" id="schooling" name="source" value="Schooling">
+                <label for="schooling">Schooling</label>
+
+                <input type="radio" id="health" name="source" value="Health">
+                <label for="health">Health</label>
+
+                <input type="radio" id="clothes" name="source" value="Clothes">
+                <label for="clothes">Clothes</label>
+
+                <input type="radio" id="others" name="source" value="Others">
+                <label for="others">Others</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="value">Amount:</label>
+            <input type="number" id="value" name="value" placeholder="Enter the amount" required>
+        </div>
+
+        <button type="submit" class="btn-submit">Add Spending</button>
+    </form>
+</div>
+{% endblock %}

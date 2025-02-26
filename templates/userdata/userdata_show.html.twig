@@ -84,6 +84,8 @@
         <p><strong>Age:</strong> {{ user.userdata.age }}</p>
         <p><strong>Phone:</strong> {{ user.userdata.phone }}</p>
         <p><strong>Address:</strong> {{ user.userdata.adress }}</p>
+        <p><strong>Budget:</strong> {{ user.userdata.budget }}</p>
+
     </div>
 
     <a href="{{ path('app_userdata_edit', { id: user.userdata.id }) }}" class="btn-edit">✏️ Edit</a>

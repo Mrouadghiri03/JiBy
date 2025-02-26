@@ -122,9 +122,9 @@
 
     <div class="btn-container">
         <a href="{{ path('app_ok') }}" class="btn btn-primary">🏠 Home</a>
-        <a href="#" class="btn btn-danger">💰 Transactions</a>
-        <a href="#" class="btn btn-primary">➕ Add Income</a>
-        <a href="#" class="btn btn-primary">➖ Add Spending</a>
+        <a href="{{ path('app_transactions')}}" class="btn btn-danger">💰 Transactions</a>
+        <a href="{{ path('app_transaction_income_route')}}" class="btn btn-primary">➕ Add Income</a>
+        <a href="{{ path('app_transaction_spending_route')}}" class="btn btn-primary">➖ Add Spending</a>
         <a href="#" class="btn btn-primary">📄 Download financial statement</a>
         <a href="{{ path('app_userdata_show') }}" class="btn btn-danger">👤 Profil</a>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserDataRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserDataRepository::class)]
@@ -28,8 +29,14 @@ class UserData
     #[ORM\Column(length: 76, nullable: true)]
     private ?string $adress = null;
 
-    #[ORM\OneToOne(mappedBy: 'userdata', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'userdata', cascade: ['persist', 'remove'] , targetEntity: User::class)]
     private ?User $user = null;
+
+    #[ORM\Column(length: 30, nullable: true)]
+    private ?string $statu = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 0, nullable: true)]
+    private ?string $budget = null;
 
     public function getId(): ?int
     {
@@ -94,6 +101,7 @@ class UserData
         $this->adress = $adress;
 
         return $this;
+        
     }
 
     public function getUser(): ?User
@@ -114,6 +122,30 @@ class UserData
         }
 
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getStatu(): ?string
+    {
+        return $this->statu;
+    }
+
+    public function setStatu(?string $statu): static
+    {
+        $this->statu = $statu;
+
+        return $this;
+    }
+
+    public function getBudget(): ?string
+    {
+        return $this->budget;
+    }
+
+    public function setBudget(?string $budget): static
+    {
+        $this->budget = $budget;
 
         return $this;
     }
